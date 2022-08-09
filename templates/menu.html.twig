@@ -1,0 +1,52 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">AUTH SYM</a>
+    </div>
+     {% if is_granted("IS_AUTHENTICATED_FULLY") == false %}
+     <ul class="nav navbar-nav">
+      
+      <li  {% if app.request.get('_route') starts with 'app_start' %} class="active"{% endif %}>
+      <a href="{{ path('app_start') }}"><span class="glyphicon glyphicon-check"></span> START</a>
+      </li>
+     </ul>
+     {% endif %}
+     {% if is_granted("IS_AUTHENTICATED_FULLY") == true %}
+     <ul class="nav navbar-nav">
+      
+
+     <li  {% if app.request.get('_route') starts with 'app_main' %} class="active"{% endif %}>
+     <a href="{{ path('app_main') }}"><span class="glyphicon glyphicon-list"></span> MAIN</a>
+     </li>
+     
+     <li  {% if app.request.get('_route') starts with 'app_person_index' %} class="active"{% endif %}>
+     <a href="{{ path('app_person_index') }}"><span class="glyphicon glyphicon-cog"></span> PERSONS</a>
+     </li>
+
+    </ul>
+    {% endif %}
+    {% if is_granted("IS_AUTHENTICATED_FULLY") == true %}
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="{{ path('app_logout')}}"><span class="glyphicon glyphicon-log-out"></span> LOGOUT</a></li>
+    </ul>
+    {% else %}
+    <ul class="nav navbar-nav navbar-right">
+      
+
+      <li  {% if app.request.get('_route') starts with 'app_login' %} class="active"{% endif %}>
+      <a href="{{ path('app_login') }}"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a>
+      </li>
+
+      <li  {% if app.request.get('_route') starts with 'app_register' %} class="active"{% endif %}>
+      <a href="{{ path('app_register') }}"><span class="glyphicon glyphicon-floppy-saved"></span> REGISTER</a>
+      </li>
+
+     
+    </ul>
+  {% endif %}
+  </div>
+</nav>
+
+
+
+

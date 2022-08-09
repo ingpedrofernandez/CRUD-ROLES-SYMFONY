@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Main{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    
+         <h1>Main Page</h1>
+    {% if app.user %}
+        <div class="mb-3">
+        {% if is_granted("ROLE_ADMIN") == true %}
+        <h3>ADMIN AREA -- ADMIN USER</h3><br>
+        {% endif %}
+        {% if not is_granted("ROLE_ADMIN") == true %}
+        <h3>USER AREA -- USER</h3><br>
+        {% endif %}
+            <h4>You are logged in as {{ app.user.userIdentifier }} </h4>
+        </div>
+    {% endif %}
+    
+<br>
+<br>
+{% if is_granted("ROLE_ADMIN") == true %}
+<a href="" class="btn btn-primary" role="button">CREATE</a>
+<br>
+<br>
+{% endif %}
+
+{% if is_granted("ROLE_USER") == true %}
+<a href="" class="btn btn-warning" role="button">READ</a>
+<br>
+<br>
+{% endif %}
+
+{% if is_granted("ROLE_ADMIN") == true %}
+<a href="" class="btn btn-success" role="button">UPDATE</a>
+<br>
+<br>
+{% endif %}
+
+{% if is_granted("ROLE_ADMIN") == true %}
+<a href="" class="btn btn-danger" role="button">DELETE</a>
+<br>
+<br> 
+{% endif %}
+   
+</div>
+{% endblock %}

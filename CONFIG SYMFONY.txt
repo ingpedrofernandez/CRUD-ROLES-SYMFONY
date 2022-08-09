@@ -1,0 +1,87 @@
+https://www.tutorialspoint.com/symfony/symfony_installation.htm
+
+https://www.tutorialspoint.com/symfony/symfony_complete_working_example.htm (it works)
+symfony_blog
+http://localhost:8000/books/display
+
+https://ptrdev.com/symfony-tutorial-for-beginners/ IT WORKS (FOR THE INDEX PAGE)
+https://github.com/neok/symfony-tutorial-for-beginners
+
+
+https://auth0.com/blog/creating-your-first-symfony-app-and-adding-authentication/ (TESTING)
+
+
+
+https://symfony.com/doc/current/setup.html  (Installing symfony 5.6) (it works)
+https://stackoverflow.com/questions/59174495/how-to-start-local-server-with-symfony-5-or-downgrade-version-to-4-4 (it works)
+
+https://ourcodeworld.co/articulos/leer/1386/como-generar-las-entidades-a-partir-de-una-base-de-datos-y-crear-el-crud-automaticamente-en-symfony-5 (CRUD GENERATOR / IT WORKS)
+symfony_crud
+http://localhost:8000/person/
+
+
+https://api.github.com/repos/symfony/webpack-encore-pack/zipball/f9f4e91659e5f55de370d6aebe77e64bce35e4d3
+https://api.github.com/repos/symfony/webpack-encore-bundle (esta es)
+
+https://ptrdev.com/symfony-tutorial-for-beginners/  (it works)
+crud_symfony
+
+https://www.w3schools.com/bootstrap/bootstrap_buttons.asp  (Bootstrap buttons)
+
+<a href="{{ path('app_person_show', {'id': person.id}) }}" class="btn btn-primary" role="button">show</a>
+                    <a href="{{ path('app_person_edit', {'id': person.id}) }}" class="btn btn-success" role="button">edit</a>
+
+
+https://zetcode.com/symfony/formbuilder/ (itworks)
+
+        <style>  
+        .flash-notice {
+        background-color: red; color: #FFFACD;
+        }
+        </style>
+
+
+https://auth0.com/blog/creating-your-first-symfony-app-and-adding-authentication/ DOES NOT WORK
+
+https://tech-es.netlify.app/articles/es508936/index.html   (USER&ADMIN) IT WORKS BUT DOES NOT HAVE REGISTER
+auth_project
+http://localhost:8000/login  (user login) password:kira
+http://localhost:8000/admin/login   (admin login)  password:kira
+
+
+https://diego.com.es/administracion-de-usuarios-en-symfony
+
+https://dthlabs.com/quick-user-authentication-and-crud-in-symfony-5/
+
+https://jnjsite.com/symfony-registro-de-usuarios-reset-password-login/  (IT WORKS)
+login_symfony
+http://localhost:8000/register
+http://localhost:8000/login
+http://localhost:8000/default
+
+
+https://symfony.com/bundles/KnpMenuBundle/current/menu_builder_service.html
+
+https://diego.com.es/usar-knpmenubundle-para-administrar-los-menus
+
+https://mediateca.educa.madrid.org/video/6po5a7brk4yox589   (menus)try
+
+
+the <li><a href="{{ path('homepage') }}">HOME</a></li>
+the <li><a href="{{ path('entry', {'name': 'info'}) }}">INFO</a></li>
+the <li><a href="{{ path('entry', {'name': 'settings'}) }}">SETTINGS</a></li>
+the <li><a href="{{ path('download') }}">DOWNLOAD</a></li>
+UPD
+Created variables in the main template:
+{% set route = app.request.get('_route') %}
+{% set entry = app.request.get('_route') == 'entry' ? app.request.get('_route_params').name : "%}
+Made menu menu.html.twig and hooked it into the main template. On a routine check for {% if %}
+<li{% if route == 'homepage' %}HOME{% else %}<a href="{{ path('homepage') }}">HOME</a>{% endif %}</li>
+<li{% if entry == 'info' %}INFO{% else %}<a href="{{ path('entry', {'name': 'info'}) }}">INFO</a>{% endif %}</li>
+<li{% if entry == 'settings' %}SETTINGS{% else %}<a href="{{ path('entry', {'name': 'settings'}) }}">SETTINGS</a>{% endif %}</li>
+<li{% if route == 'download' %}DOWNLOAD{% else %}<a href="{{ path('download') }}">DOWNLOAD</a>{% endif %}</li>
+
+
+
+ 
+

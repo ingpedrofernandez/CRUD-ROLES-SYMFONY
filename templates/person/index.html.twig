@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Person index{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        body {
+        padding: 30px;
+        }
+        .align-center {
+            margin: 0 auto;
+        }
+        .flash-success span {
+        background-color: #00BFFF; 
+        color: #FFFFC2;
+        padding: 10px;
+        border-radius: 10px;
+        border: 3px solid #0020C2;
+        }
+  
+        .flash-notice span {
+        background-color: #D462FF; 
+        color: #FFFFC2;
+        padding: 10px;
+        border-radius: 10px;
+        border: 3px solid #800080;
+        }
+
+        .flash-warning span {
+        background-color: #F67280; 
+        color: #FFFFC2;
+        padding: 10px;
+        border-radius: 10px;
+        border: 3px solid #F70D1A;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    
+    <div class="row">
+        <div class="col-lg-8 align-center">
+
+    <h1>Person index</h1>
+    <br>
+    {% if app.user %}
+        <div class="mb-3">
+        {% if is_granted("ROLE_ADMIN") == true %}
+        <h3>ADMIN AREA -- ADMIN USER</h3><br>
+        {% endif %}
+        {% if not is_granted("ROLE_ADMIN") == true %}
+        <h3>USER AREA -- USER</h3><br>
+        {% endif %}
+            <h4>You are logged in as {{ app.user.userIdentifier }} </h4>
+        </div>
+    {% endif %}
+    <br>
+{% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="flash-{{ label }}">
+                       <br><br>
+                       <span> {{ message }} </span>
+                       <br><br>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+<br>
+      {% if is_granted("ROLE_ADMIN") == true %}
+      <a href="{{ path('app_person_new') }}" class="btn btn-warning" role="button">CREATE NEW</a>  
+      {% endif %}
+      <br><br>
+    <table class="table table-striped ">
+                <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>E-MAIL</th>
+                <th>TLF</th>
+                <th>SHOW {% if is_granted("ROLE_ADMIN") == true %}/ EDIT{% endif %}</th>
+                {% if is_granted("ROLE_ADMIN") == true %}
+                <th>DELETE</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for person in people %}
+            <tr>
+                <td>{{ person.id }}</td>
+                <td>{{ person.name }}</td>
+                <td>{{ person.email }}</td>
+                <td>{{ person.tlf }}</td>
+                <td>
+                    <a href="{{ path('app_person_show', {'id': person.id}) }}" class="btn btn-primary" role="button">SHOW</a>
+                {% if is_granted("ROLE_ADMIN") == true %}
+                    <a href="{{ path('app_person_edit', {'id': person.id}) }}" class="btn btn-success" role="button">EDIT</a>
+                {% endif %}
+                </td>
+                <td>  
+                    {% if is_granted("ROLE_ADMIN") == true %}
+                    <form method="post" action="{{ path('app_person_delete', {'id': person.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ person.id) }}">
+                    <button class="btn btn-danger">DELETE</button>
+                    {% endif %}
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+
+</div>
+    </div>
+
+{% endblock %}
